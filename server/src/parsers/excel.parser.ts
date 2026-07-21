@@ -16,6 +16,7 @@ export function parseExcel(
     XLSX.utils.sheet_to_json(
       worksheet,
       {
+        range: 4,
         defval: "",
       }
     );
