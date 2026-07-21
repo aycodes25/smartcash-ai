@@ -317,8 +317,6 @@ This project is licensed under the MIT License.
 
 Full Stack Developer
 
-GitHub: https://github.com/YOUR_USERNAME
+GitHub: https://github.com/aycodes25
 
-Portfolio: https://YOUR_PORTFOLIO_LINK
-
-LinkedIn: https://linkedin.com/in/YOUR_PROFILE
+Portfolio: https://tominiyiayomide.netlify.app/
