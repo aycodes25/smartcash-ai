@@ -1,5 +1,5 @@
-import { parseHub360 } from "./hub360.parser";
+import { hub360Parser } from "./hub360.parser";
 
-export const parserRegistry = {
-  hub360: parseHub360,
-};
+export const parsers = [
+  hub360Parser,
+];
