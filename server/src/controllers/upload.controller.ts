@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { parseExcel } from "../parsers/excel.parser";
 
 export const uploadFile = (
   req: Request,
@@ -11,9 +12,13 @@ export const uploadFile = (
     });
   }
 
-  return res.status(200).json({
+  const transactions =
+    parseExcel(req.file.path);
+
+  return res.json({
     success: true,
-    message: "File uploaded successfully",
-    file: req.file,
+    totalRows:
+      transactions.length,
+    transactions,
   });
 };
