@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
+    "test": "jest --passWithNoTests",
     "start": "node dist/server.js"
   },
   "keywords": [
@@ -18,10 +19,17 @@
   "license": "MIT",
   "dependencies": {
     "@supabase/supabase-js": "^2.109.0",
+    "@types/jest": "^30.0.0",
+    "@types/supertest": "^7.2.1",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
+    "exceljs": "^4.4.0",
     "express": "^5.2.1",
+    "jest": "^30.4.2",
     "multer": "^2.2.0",
+    "openai": "^6.48.0",
+    "supertest": "^7.2.2",
+    "ts-jest": "^29.4.11",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

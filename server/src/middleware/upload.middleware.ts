@@ -1,33 +1,24 @@
-import multer from "multer";
-import path from "path";
-import fs from "fs";
+import multer from 'multer';
 
-const uploadDirectory = path.join(
-  __dirname,
-  "../uploads"
-);
-
-if (!fs.existsSync(uploadDirectory)) {
-  fs.mkdirSync(uploadDirectory, {
-    recursive: true,
-  });
-}
-
-const storage = multer.diskStorage({
-  destination(req, file, cb) {
-    cb(null, uploadDirectory);
-  },
-
-  filename(req, file, cb) {
-    const uniqueName =
-      Date.now() +
-      "-" +
-      file.originalname.replace(/\s+/g, "-");
-
-    cb(null, uniqueName);
-  },
-});
+const storage = multer.memoryStorage();
 
 export const upload = multer({
   storage,
+  limits: {
+    fileSize: 20 * 1024 * 1024 // 20 MB max file size limit
+  },
+  fileFilter: (_req, file, cb) => {
+    if (
+      file.mimetype.includes('excel') ||
+      file.mimetype.includes('spreadsheetml') ||
+      file.mimetype.includes('csv') ||
+      file.originalname.endsWith('.xlsx') ||
+      file.originalname.endsWith('.xls') ||
+      file.originalname.endsWith('.csv')
+    ) {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid file format. Please upload an Excel (.xlsx, .xls) or CSV file.'));
+    }
+  }
 });
