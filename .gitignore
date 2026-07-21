@@ -1,4 +1,6 @@
+# ==========================
 # Logs
+# ==========================
 logs
 *.log
 npm-debug.log*
@@ -7,25 +9,44 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# ==========================
 # Dependencies
+# ==========================
 node_modules
-package-lock.json
 
+# Lock files
+# Keep package-lock.json if you're using npm
+# package-lock.json
+
+# ==========================
 # Build folders
+# ==========================
 dist
 dist-ssr
 build
 coverage
 
-# Environment variables
+# ==========================
+# Environment Variables
+# ==========================
 .env
 .env.*
 !.env.example
 
+# ==========================
+# Uploaded Files
+# ==========================
+server/uploads/
+client/uploads/
+
+# ==========================
 # Local files
+# ==========================
 *.local
 
-# Editor directories and files
+# ==========================
+# Editor files
+# ==========================
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -35,3 +56,9 @@ coverage
 *.njsproj*
 *.sln
 *.sw?
+
+# ==========================
+# OS files
+# ==========================
+Thumbs.db
+Desktop.ini
