@@ -1,25 +1,30 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 
-dotenv.config();
+import { env } from "./config/env";
+
+import routes from "./routes";
+
+import { notFound } from "./middleware/notFound";
+import { errorHandler } from "./middleware/errorHandler";
 
 const app = express();
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: env.FRONTEND_URL,
     credentials: true,
   })
 );
 
 app.use(express.json());
 
-app.get("/api/health", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "SmartCash AI API is running 🚀",
-  });
-});
+app.use("/api", routes);
+
+// Unknown routes
+app.use(notFound);
+
+// Global error handler
+app.use(errorHandler);
 
 export default app;
