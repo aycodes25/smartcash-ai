@@ -1,4 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 
 import LoginPage from "@/pages/auth/LoginPage";
 import DashboardPage from "@/pages/dashboard/DashboardPage";
@@ -8,40 +13,88 @@ import ReportsPage from "@/pages/reports/ReportsPage";
 import SettingsPage from "@/pages/settings/SettingsPage";
 import CategoriesPage from "@/pages/categories/CategoriesPage";
 
+import ProtectedRoute from "@/auth/ProtectedRoute";
+import PublicRoute from "@/auth/PublicRoute";
+
 function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        {/* Redirect root */}
+        <Route
+          path="/"
+          element={<Navigate to="/login" replace />}
+        />
 
+        {/* Public Route */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+
+        {/* Protected Routes */}
         <Route
           path="/dashboard"
-          element={<DashboardPage />}
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/upload"
-          element={<UploadPage />}
+          element={
+            <ProtectedRoute>
+              <UploadPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/history"
-          element={<HistoryPage />}
+          element={
+            <ProtectedRoute>
+              <HistoryPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/reports"
-          element={<ReportsPage />}
+          element={
+            <ProtectedRoute>
+              <ReportsPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/settings"
-          element={<SettingsPage />}
+          element={
+            <ProtectedRoute>
+              <SettingsPage />
+            </ProtectedRoute>
+          }
         />
 
         <Route
           path="/categories"
-          element={<CategoriesPage />}
+          element={
+            <ProtectedRoute>
+              <CategoriesPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Catch all unknown routes */}
+        <Route
+          path="*"
+          element={<Navigate to="/login" replace />}
         />
       </Routes>
     </BrowserRouter>
